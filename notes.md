@@ -1,3 +1,8 @@
+### Updates after a little bit of work (8/22/2023)
+* Connection to the T7 is super easy, so is reading named variables
+* Going to try to make each sensor into a JSON object that includes units, pin numbers, and scaling equations as well as a label and grid position
+* Got a label to live update, now all I need to do is bundle everything together and structure the program
+
 ### Requirements
 * Live readings for all sensors
 * Scaling equations to convert voltage values to units
