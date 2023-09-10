@@ -17,7 +17,6 @@ def main():
         handle = ljm.openS("ANY","ETHERNET","ANY")
     except ljm.LJMError:
         print("Could not connect to Labjack via Ethernet, restart program")
-        #TODO: Add a popup box to display this message
         exit()
     
     with open("styleConfig.json","r") as f:
@@ -38,15 +37,14 @@ def main():
     mainFrame.grid()
     mainFrame.config(bg=windowStyle["backgroundColor"])
     mainFrame.config(padx=windowStyle["padding"],pady=windowStyle["padding"])
+    mainFrame.grid_columnconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minWidth"])
+    mainFrame.grid_rowconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minHeight"])
 
     Instrument.loadDataVars(root,instrumentConfigs)
 
     Instrument.loadInstruments(mainFrame,instrumentConfigs,instrumentStyle)
 
     dataLogger = DataLogger.DataLogger(mainFrame,logConfig,instrumentConfigs)
-
-    mainFrame.grid_columnconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minWidth"])
-    mainFrame.grid_rowconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minHeight"])
 
     while (isWindowOpen):
         Instrument.updateDataVars(mainFrame, instrumentConfigs, handle)
