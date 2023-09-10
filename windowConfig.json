@@ -1,0 +1,67 @@
+{
+        "instruments":
+        [
+            {
+                "label":"PT1",
+                "pin":"AIN0",
+                "unit":"Volts",
+                "offset":0,
+                "scalingFactor":1,
+                "row":0,
+                "column":0,
+                "hidden": true
+            },
+                
+            {"label":"PT2","pin":"AIN1","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":1,"column":0},
+            
+            {"label":"PT3 FUEL","pin":"AIN10","unit":"PSI",
+                "offset":0,"scalingFactor":1,
+                "row":2,"column":0},
+                
+            {"label":"PT4","pin":"AIN3","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":0,"column":1},
+            
+            {"label":"PT5","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":1,"column":1},
+        
+            {"label":"PT6","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":2,"column":1},
+            
+            {"label":"LC1","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":0,"column":2},
+        
+            {"label":"LC2","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":1,"column":2},
+            
+            {"label":"LC3","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":2,"column":2},
+        
+            {"label":"LC4","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":0,"column":3},
+            
+            {"label":"LC5","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":1,"column":3},
+        
+            {"label":"TC1","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":0,"column":4},
+            
+            {"label":"TC2","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":1,"column":4},
+        
+            {"label":"TC3","pin":"AIN0","unit":"Volts",
+                "offset":0,"scalingFactor":1,
+                "row":2,"column":4}
+        ]
+}

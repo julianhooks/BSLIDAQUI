@@ -1,0 +1,31 @@
+{
+    "instrumentStyle":
+{
+    "minWidth":200,
+    "minHeight":100,
+    "padding":10,
+    "margin":40,
+    "valueFont":"Arial",
+    "labelFont":"Arial",
+    "valueSize":40,
+    "labelSize":20,
+    "labelColor":"#000000",
+    "valueColor":"#000000",
+    "backgroundColor":"Grey"
+},
+
+
+    "windowStyle":
+{
+    "padding":20,
+    "backgroundColor":"#333333"
+},
+    
+    
+    "logSettings":
+{
+    "filepath":"./log",
+    "sampleRateSec": 0.001,
+    "sampleRateHz": 1000
+}
+}
