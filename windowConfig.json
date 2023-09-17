@@ -2,66 +2,63 @@
         "instruments":
         [
             {
-                "label":"PT1",
-                "pin":"AIN0",
-                "unit":"Volts",
-                "offset":0,
-                "scalingFactor":1,
+                "label":"LOX PT 1",
+                "pin":"AIN77",
+                "unit":"PSI",
+                "offset":26.5,
+                "scalingFactor":605.086,
                 "row":0,
-                "column":0,
-                "hidden": true
+                "column":0
             },
                 
-            {"label":"PT2","pin":"AIN1","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":1,"column":0},
+            {
+                "label":"LOX PT 2",
+                "pin":"AIN78",
+                "unit":"PSI",
+                "offset":33.81,
+                "scalingFactor":595.0083,
+                "row":1,
+                "column":0
+            },
             
-            {"label":"PT3 FUEL","pin":"AIN10","unit":"PSI",
-                "offset":0,"scalingFactor":1,
-                "row":2,"column":0},
+            {
+                "label":"LOX PT3",
+                "pin":"AIN82",
+                "unit":"PSI",
+                "offset":35.366,
+                "scalingFactor":604.934,
+                "row":2,
+                "column":0
+            },
                 
-            {"label":"PT4","pin":"AIN3","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":0,"column":1},
+            {
+                "label":"FUEL PT1 Engine",
+                "pin":"AIN79",
+                "unit":"PSI",
+                "offset":-4.037,
+                "scalingFactor":626.466,
+                "row":0,
+                "column":1
+            },
             
-            {"label":"PT5","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":1,"column":1},
+            {
+                "label":"FUEL PT2 Pressure Line",
+                "pin":"AIN80",
+                "unit":"PSI",
+                "offset":-2.844,
+                "scalingFator":623.638,
+                "row":1,
+                "column":1
+            },
         
-            {"label":"PT6","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":2,"column":1},
-            
-            {"label":"LC1","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":0,"column":2},
-        
-            {"label":"LC2","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":1,"column":2},
-            
-            {"label":"LC3","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":2,"column":2},
-        
-            {"label":"LC4","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":0,"column":3},
-            
-            {"label":"LC5","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":1,"column":3},
-        
-            {"label":"TC1","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":0,"column":4},
-            
-            {"label":"TC2","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":1,"column":4},
-        
-            {"label":"TC3","pin":"AIN0","unit":"Volts",
-                "offset":0,"scalingFactor":1,
-                "row":2,"column":4}
+            {
+                "label":"FUEL PT 3",
+                "pin":"AIN81",
+                "unit":"PSI",
+                "offset":-2.425,
+                "scalingFactor":620.212,
+                "row":2,
+                "column":1
+            }
         ]
 }
