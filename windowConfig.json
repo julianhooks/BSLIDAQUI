@@ -2,37 +2,52 @@
         "instruments":
         [
             {
-                "label":"LOX PT 1",
+                "type":"Graph",
+                "label":"Test",
+                "pin":"AIN01",
+                "unit":"V",
+                "offset":0,
+                "scalingFactor":0,
+                "row":0,
+                "column":0
+            },
+            
+            {
+                "type":"Number",
+                "label":"LOXPT1",
                 "pin":"AIN77",
                 "unit":"PSI",
-                "offset":26.5,
+                "offset":0,
                 "scalingFactor":605.086,
                 "row":0,
                 "column":0
             },
                 
             {
-                "label":"LOX PT 2",
+                "type":"Number",
+                "label":"LOXPT2",
                 "pin":"AIN78",
                 "unit":"PSI",
-                "offset":33.81,
+                "offset":0,
                 "scalingFactor":595.0083,
                 "row":1,
                 "column":0
             },
             
             {
-                "label":"LOX PT3",
+                "type":"Number",
+                "label":"LOXPT3",
                 "pin":"AIN82",
                 "unit":"PSI",
-                "offset":35.366,
+                "offset":0,
                 "scalingFactor":604.934,
                 "row":2,
                 "column":0
             },
                 
             {
-                "label":"FUEL PT1 Engine",
+                "type":"Number",
+                "label":"FUELPT1",
                 "pin":"AIN79",
                 "unit":"PSI",
                 "offset":-4.037,
@@ -42,17 +57,19 @@
             },
             
             {
-                "label":"FUEL PT2 Pressure Line",
+                "type":"Number",
+                "label":"FUELPT2",
                 "pin":"AIN80",
                 "unit":"PSI",
                 "offset":-2.844,
-                "scalingFator":623.638,
+                "scalingFactor":623.638,
                 "row":1,
                 "column":1
             },
         
             {
-                "label":"FUEL PT 3",
+                "type":"Number",
+                "label":"FUELPT3",
                 "pin":"AIN81",
                 "unit":"PSI",
                 "offset":-2.425,
@@ -60,5 +77,6 @@
                 "row":2,
                 "column":1
             }
+            
         ]
 }
