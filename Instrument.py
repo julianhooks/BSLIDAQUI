@@ -21,7 +21,7 @@ class Graph(tk.Widget):
         ax.set_xlabel("time [s]")
         ax.set_ylabel("f(t)")
 
-        canvas = FigureCanvasTkAgg(fig, master=root) 
+        self.canvas = FigureCanvasTkAgg(fig, master=root)   
 
 
     def updateGraph(self) -> None:
