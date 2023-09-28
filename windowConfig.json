@@ -8,6 +8,8 @@
                 "unit":"V",
                 "offset":0,
                 "scalingFactor":0,
+                "range": 50,
+                "interval": 0.1,
                 "row":0,
                 "column":0
             },
