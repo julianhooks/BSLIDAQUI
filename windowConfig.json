@@ -4,14 +4,27 @@
             {
                 "type":"Graph",
                 "label":"Test",
-                "pin":"AIN01",
+                "pin":"AIN77",
                 "unit":"V",
                 "offset":0,
-                "scalingFactor":0,
+                "scalingFactor":-60,
                 "range": 50,
                 "interval": 0.1,
-                "row":0,
+                "row":5,
                 "column":0
+            },
+
+            {
+                "type":"Graph",
+                "label":"Test",
+                "pin":"AIN77",
+                "unit":"V",
+                "offset":0,
+                "scalingFactor":-10,
+                "range": 50,
+                "interval": 0.1,
+                "row":5,
+                "column":1
             },
             
             {
