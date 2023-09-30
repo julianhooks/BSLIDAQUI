@@ -4,7 +4,7 @@ import logging
 import csv
 import multiprocessing
 
-def LogLoop(instrumentConfigData:dict, voltageData: multiprocessing.Array, isOpen: multiprocessing.Value, logging: multiprocessing.Value, logIntervalInSecs) -> None:
+def LogLoop(instrumentConfigData:dict, voltageData: multiprocessing.Array, isOpen: multiprocessing.Value, isLogging: multiprocessing.Value, logIntervalInSecs) -> None:
     try:
         filehandle = open(str(datetime.datetime.today().strftime("%S_%M_%H_%d_%m_%y"))+".log","x")
     except OSError:
@@ -29,7 +29,7 @@ def LogLoop(instrumentConfigData:dict, voltageData: multiprocessing.Array, isOpe
     #Start logging
     lastLogTime = datetime.datetime.today().timestamp()
     while(isOpen.value):
-        if(not logging):
+        if(not isLogging.value):
             pass
         elif (datetime.datetime.today().timestamp() - lastLogTime < logIntervalInSecs):
             pass
@@ -47,43 +47,3 @@ def logValues(csvHandle: csv.writer, voltageData: multiprocessing.Array, instrum
     for i in instrumentConfigData:
         row.append(voltageData[i["index"]])
     csvHandle.writerow(row)
-
-class DataLogger:
-    def __init__(self,mainFrame: tk.Frame,config: dict,instrumentConfig:dict) -> None:
-        self.config = config
-        self.filehandle = None
-        
-        self.filehandle = open(str(datetime.datetime.today().strftime("%S_%M_%H_%d_%m_%y"))+".log","x")
-        self.writer = csv.writer(self.filehandle)
-        self.widgetFrame = mainFrame
-        self.startButton = tk.Button(self.widgetFrame, text="Start Data Log", command=self.startLog).grid(row=3,column=0) #These should be in UILoop
-        self.stopButton = tk.Button(self.widgetFrame, text="End Data Log", command = self.stopLog).grid(row=3,column=1)
-
-        headerRow = ["Time"]
-        unitRow = [""]
-
-        for i in instrumentConfig:
-            headerRow.append(i["label"])
-            unitRow.append(i["unit"])
-
-        self.writer.writerow(headerRow)
-        self.writer.writerow(unitRow)
-
-    def __del__(self) -> None:
-        if (self.filehandle):
-            self.filehandle.close()
-        pass
-
-    def startLog(self):
-        self.isLogging = True
-    
-    def stopLog(self):
-        self.isLogging = False
-
-    def updateLogger(self, masterFrame: tk.Frame, instrumentConfig: dict):
-        if ((datetime.datetime.today().timestamp() - self.lastLogTime > self.logIntervalSec) and self.isLogging):
-            self.lastLogTime = datetime.datetime.today().timestamp()
-            row = [datetime.datetime.today().time()]
-            for i in instrumentConfig:
-                row.append(masterFrame.getvar(name=i["label"]))
-            self.writer.writerow(row)
