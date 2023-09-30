@@ -1,14 +1,11 @@
 from labjack import ljm
-import tkinter as tk
 import json
 import logging
 import multiprocessing
 from collections import deque
 
 import DataLogger
-import Instrument
 import InterfaceUI
-#TODO: Add crash logging
 
 def main():
     try: 
@@ -33,44 +30,42 @@ def main():
     for i in instrumentConfigs:
         i["index"] = dummyIndex
         dummyIndex += 1
-        if (i["type"] == "graph"):
-            i["values"] = deque(range(i["range"])) 
+        if (i["type"] == "Graph"):
+            i["values"] = deque([-10*i["scalingFactor"]]*int(i["range"]/i["interval"]),maxlen=int(i["range"]/i["interval"]))
 
     voltages = multiprocessing.Array('d', range(dummyIndex))
     isWindowOpen = multiprocessing.Value('i', 1)
+    isLogging = multiprocessing.Value('i', 0)
 
     UIProcess = multiprocessing.Process(target=InterfaceUI.UILoop,
-                                        args=(voltages,instrumentConfigs,isWindowOpen,windowStyle,instrumentStyle))
-    logProcess = multiprocessing.Process(target=DataLogger.LogLoop,args=(instrumentConfigs,voltages,isWindowOpen))
+                                        args=(voltages,instrumentConfigs,isWindowOpen,isLogging,windowStyle,instrumentStyle,))
+    logProcess = multiprocessing.Process(target=DataLogger.LogLoop,
+                                         args=(instrumentConfigs,voltages,isWindowOpen,isLogging,logConfig["sampleRateSec"],))
 
-    root = tk.Tk()
+    UIProcess.start()
+    logProcess.start()
+ 
+    while (isWindowOpen.value):
+        try:
+            GetVoltages(voltages,instrumentConfigs,handle)
+        except ljm.LJMError:
+            isWindowOpen = 0
+            pass
 
-    root.protocol("WM_DELETE_WINDOW", onClosing)
+    try:
+        UIProcess.join(5)
+    except:
+        UIProcess.terminate()
+    try:
+        logProcess.join(5)
+    except:
+        logProcess.terminate()
+    try:
+        ljm.close(handle)
+    except ljm.LJMError:
+        logging.error("Closing labjack connection failed")
 
-    mainFrame = tk.Frame(root)
-    mainFrame.grid()
-    mainFrame.config(bg=windowStyle["backgroundColor"])
-    mainFrame.config(padx=windowStyle["padding"],pady=windowStyle["padding"])
-    mainFrame.grid_columnconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minWidth"])
-    mainFrame.grid_rowconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minHeight"])
-
-    Instrument.loadDataVars(root,instrumentConfigs)
-
-    Instrument.loadInstruments(mainFrame,instrumentConfigs,instrumentStyle)
-
-    dataLogger = DataLogger.DataLogger(mainFrame,logConfig,instrumentConfigs)
-
-    while (isWindowOpen):
-        GetVoltages(voltages,instrumentConfigs,handle)
-        
-        InterfaceUI.updateDataVars(mainFrame, instrumentConfigs, handle)
-        dataLogger.updateLogger(mainFrame,instrumentConfigs)
-        root.update_idletasks()
-        root.update()
-
-    dataLogger.stopLog()
-    root.destroy()
-    ljm.close(handle)
+    exit()
 
 def GetVoltages(voltageData: multiprocessing.Array, instrumentConfigData: dict, labjackHandle: int) -> None:
     for i in instrumentConfigData:

@@ -28,7 +28,7 @@ def LogLoop(instrumentConfigData:dict, voltageData: multiprocessing.Array, isOpe
     
     #Start logging
     lastLogTime = datetime.datetime.today().timestamp()
-    while(isOpen):
+    while(isOpen.value):
         if(not logging):
             pass
         elif (datetime.datetime.today().timestamp() - lastLogTime < logIntervalInSecs):

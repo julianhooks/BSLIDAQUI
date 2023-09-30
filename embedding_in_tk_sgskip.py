@@ -32,8 +32,6 @@ canvas.get_tk_widget().pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True)
 
 ani = animation.FuncAnimation(fig, animate, interval=20, blit=True, save_count=50)
 
-### Need updateData(dataArray[])
-
 while(True):
     dummyArray = [random.random() for x in range(300)]
     root.update_idletasks()
