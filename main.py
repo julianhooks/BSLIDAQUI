@@ -1,8 +1,9 @@
-from labjack import ljm
 import json
 import logging
 import multiprocessing
 from collections import deque
+
+from labjack import ljm
 
 import DataLogger
 import InterfaceUI

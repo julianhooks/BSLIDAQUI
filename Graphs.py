@@ -1,6 +1,7 @@
-import numpy as np
 import tkinter as tk
 import multiprocessing
+
+import numpy as np
 import matplotlib.figure
 import matplotlib.animation
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
