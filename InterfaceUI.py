@@ -24,8 +24,8 @@ def loadWidgets(mainFrame: tk.Frame, instrumentConfigDict: dict, styleDict: dict
     def stopLog():
         isLogging.value = 0
 
-    tk.Button(mainFrame, text="Start Data Logging", command = startLog).grid(row=3,column=0)
-    tk.Button(mainFrame, text="End Data Loging", command = stopLog).grid(row=3,column=1)
+    tk.Button(mainFrame, text="Start Data Logging", command = startLog).grid(row=4,column=0)
+    tk.Button(mainFrame, text="End Data Loging", command = stopLog).grid(row=4,column=1)
 
 def updateWidgets(masterFrame: tk.Frame, instrumentConfigDict: dict, voltageData: multiprocessing.Array) -> None:
     for i in instrumentConfigDict:

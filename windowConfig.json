@@ -3,28 +3,38 @@
         [
             {
                 "type":"Graph",
-                "label":"Test",
-                "pin":"AIN77",
-                "unit":"V",
-                "offset":0,
-                "scalingFactor":-60,
+                "label":"FUEL_LC",
+                "pin":"AIN76",
+                "unit":"LBs",
+                "offset": -118.909,
+                "scalingFactor": -36.3636,
                 "range": 50,
                 "interval": 0.1,
-                "row":5,
+                "row":0,
+                "column":2,
+                "yRange":2
+            },
+                        
+            {
+                "type":"Number",
+                "label":"FUEL_LC",
+                "pin":"AIN76",
+                "unit":"LBs",
+                "offset": -118.909,
+                "scalingFactor": -36.3636,
+                "row":3,
                 "column":0
             },
-
+            
             {
-                "type":"Graph",
-                "label":"Test",
-                "pin":"AIN77",
-                "unit":"V",
-                "offset":0,
-                "scalingFactor":-10,
-                "range": 50,
-                "interval": 0.1,
-                "row":5,
-                "column":1
+                "type":"Number",
+                "label":"LOX_LC",
+                "pin":"AIN75",
+                "unit":"LBs",
+                "offset": -75,
+                "scalingFactor": -50,
+                "row":3,
+                "column":1 
             },
             
             {
@@ -91,7 +101,6 @@
                 "scalingFactor":620.212,
                 "row":2,
                 "column":1
-            }
-            
+            }            
         ]
 }

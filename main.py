@@ -10,7 +10,7 @@ import InterfaceUI
 
 def main():
     try: 
-        handle = ljm.openS("ANY","ETHERNET","ANY")
+        handle = ljm.openS("ANY","ANY","ANY")
     except ljm.LJMError:
         logging.error("Could not connect to Labjack via Ethernet, restart program")
         exit()
@@ -32,7 +32,9 @@ def main():
         i["index"] = dummyIndex
         dummyIndex += 1
         if (i["type"] == "Graph"):
-            i["values"] = deque([-10*i["scalingFactor"]]*int(i["range"]/i["interval"]),maxlen=int(i["range"]/i["interval"]))
+            i["values"] = deque([i["yRange"]]*int(i["range"]/i["interval"]),maxlen=int(i["range"]/i["interval"]))
+            i["values"].pop()
+            i["values"].append(0)
 
     voltages = multiprocessing.Array('d', range(dummyIndex))
     isWindowOpen = multiprocessing.Value('i', 1)
