@@ -25,6 +25,9 @@ def LogLoop(instrumentConfigData:dict, voltageData: multiprocessing.Array, isOpe
         headerRow.append(i["label"])
         unitRow.append(i["unit"])
     
+    writer.writerow(headerRow)
+    writer.writerow(unitRow)
+
     #Start logging
     lastLogTime = datetime.datetime.today().timestamp()
     while(isOpen.value):

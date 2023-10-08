@@ -24,8 +24,13 @@ def loadWidgets(mainFrame: tk.Frame, instrumentConfigDict: dict, styleDict: dict
     def stopLog():
         isLogging.value = 0
 
-    tk.Button(mainFrame, text="Start Data Logging", command = startLog).grid(row=4,column=0)
-    tk.Button(mainFrame, text="End Data Loging", command = stopLog).grid(row=4,column=1)
+    tk.Button(mainFrame, text="Start Data Logging", command = startLog, 
+              font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
+              background = styleDict["backgroundColor"]).grid(row=0,column=4)
+    
+    tk.Button(mainFrame, text="End Data Loging", command = stopLog, 
+              font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
+              background = styleDict["backgroundColor"]).grid(row=1,column=4)
 
 def updateWidgets(masterFrame: tk.Frame, instrumentConfigDict: dict, voltageData: multiprocessing.Array) -> None:
     for i in instrumentConfigDict:
@@ -33,6 +38,7 @@ def updateWidgets(masterFrame: tk.Frame, instrumentConfigDict: dict, voltageData
             Instrument.updateInstrument(masterFrame, i, voltageData)
         elif (i["type"] == "Graph"):
             Graphs.updateGraph(i, voltageData)
+            Instrument.updateInstrument(masterFrame, i, voltageData)
 
 def UILoop(voltageData: multiprocessing.Array, instrumentConfigData: dict, 
            isWindowOpenGlobal: multiprocessing.Value, isLogging: 

@@ -11,16 +11,15 @@
     "labelSize":20,
     "labelColor":"#000000",
     "valueColor":"#000000",
-    "backgroundColor":"Grey"
+    "backgroundColor":"#FFFFFF"
 },
 
 
     "windowStyle":
 {
     "padding":20,
-    "backgroundColor":"#333333"
+    "backgroundColor":"#FFFFFF"
 },
-    
     
     "logSettings":
 {
