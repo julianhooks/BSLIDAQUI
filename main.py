@@ -1,22 +1,18 @@
-from labjack import ljm
-import tkinter as tk
 import json
 import logging
+import multiprocessing
+from collections import deque
+
+from labjack import ljm
+
 import DataLogger
-import Instrument
-#TODO: Add crash logging
-
-isWindowOpen = True
-
-def onClosing():
-    global isWindowOpen
-    isWindowOpen = False
+import InterfaceUI
 
 def main():
     try: 
-        handle = ljm.openS("ANY","ETHERNET","ANY")
+        handle = ljm.openS("ANY","ANY","ANY")
     except ljm.LJMError:
-        print("Could not connect to Labjack via Ethernet, restart program")
+        logging.error("Could not connect to Labjack via Ethernet, restart program")
         exit()
     
     with open("styleConfig.json","r") as f:
@@ -28,33 +24,59 @@ def main():
     with  open("windowConfig.json","r") as f:
         fileObj = json.load(f)
         instrumentConfigs = fileObj["instruments"]
-
-    root = tk.Tk()
     
-    root.protocol("WM_DELETE_WINDOW", onClosing)
+    #Add indexes for multiprocessing array and value arrays for graphs
 
-    mainFrame = tk.Frame(root)
-    mainFrame.grid()
-    mainFrame.config(bg=windowStyle["backgroundColor"])
-    mainFrame.config(padx=windowStyle["padding"],pady=windowStyle["padding"])
-    mainFrame.grid_columnconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minWidth"])
-    mainFrame.grid_rowconfigure(tk.ALL,weight=1,pad=instrumentStyle["margin"],minsize=instrumentStyle["minHeight"])
+    dummyIndex = 0
+    for i in instrumentConfigs:
+        i["index"] = dummyIndex
+        dummyIndex += 1
+        if (i["type"] == "Graph"):
+            i["values"] = deque([i["yRange"]]*int(i["range"]/i["interval"]),maxlen=int(i["range"]/i["interval"]))
+            i["values"].pop()
+            i["values"].append(0)
 
-    Instrument.loadDataVars(root,instrumentConfigs)
+    voltages = multiprocessing.Array('d', range(dummyIndex))
+    isWindowOpen = multiprocessing.Value('i', 1)
+    isLogging = multiprocessing.Value('i', 0)
 
-    Instrument.loadInstruments(mainFrame,instrumentConfigs,instrumentStyle)
+    UIProcess = multiprocessing.Process(target=InterfaceUI.UILoop,
+                                        args=(voltages,instrumentConfigs,isWindowOpen,isLogging,windowStyle,instrumentStyle,))
+    logProcess = multiprocessing.Process(target=DataLogger.LogLoop,
+                                         args=(instrumentConfigs,voltages,isWindowOpen,isLogging,logConfig["sampleRateSec"],))
 
-    dataLogger = DataLogger.DataLogger(mainFrame,logConfig,instrumentConfigs)
+    UIProcess.start()
+    logProcess.start()
+ 
+    while (isWindowOpen.value):
+        try:
+            GetVoltages(voltages,instrumentConfigs,handle)
+        except ljm.LJMError:
+            isWindowOpen = 0
+            pass
 
-    while (isWindowOpen):
-        Instrument.updateDataVars(mainFrame, instrumentConfigs, handle)
-        dataLogger.updateLogger(mainFrame,instrumentConfigs)
-        root.update_idletasks()
-        root.update()
+    try:
+        UIProcess.join(5)
+    except:
+        UIProcess.terminate()
+    try:
+        logProcess.join(5)
+    except:
+        logProcess.terminate()
+    try:
+        ljm.close(handle)
+    except ljm.LJMError:
+        logging.error("Closing labjack connection failed")
 
-    dataLogger.stopLog()
-    root.destroy()
-    ljm.close(handle)
+    exit()
+
+def GetVoltages(voltageData: multiprocessing.Array, instrumentConfigData: dict, labjackHandle: int) -> None:
+    for i in instrumentConfigData:
+        try: 
+            voltageData[i["index"]] = ljm.eReadName(labjackHandle, i["pin"])
+        except ljm.LJMError:
+            logging.error("An LJM library or hardware error occured")
+            raise ljm.LJMError
 
 if (__name__ == "__main__"):
     main()

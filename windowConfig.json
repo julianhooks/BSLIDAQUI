@@ -3,80 +3,102 @@
         [
             {
                 "type":"Graph",
-                "label":"Test",
-                "pin":"AIN01",
-                "unit":"V",
-                "offset":0,
-                "scalingFactor":0,
+                "label":"FUEL_LC",
+                "pin":"AIN76",
+                "unit":"LBs",
+                "offset": -118.909,
+                "scalingFactor": -36.3636,
+                "range": 50,
+                "interval": 0.1,
                 "row":0,
-                "column":0
+                "column":0,
+                "yRange":20
+            },
+
+            {
+                "type":"Graph",
+                "label":"LOX_LC",
+                "pin":"AIN75",
+                "unit":"LBs",
+                "offset": -75,
+                "scalingFactor": -50,
+                "range": 50,
+                "interval": 0.1,
+                "row":0,
+                "column":1,
+                "yRange":20
             },
             
             {
-                "type":"Number",
-                "label":"LOXPT1",
-                "pin":"AIN77",
-                "unit":"PSI",
-                "offset":0,
-                "scalingFactor":605.086,
-                "row":0,
-                "column":0
-            },
-                
-            {
-                "type":"Number",
-                "label":"LOXPT2",
-                "pin":"AIN78",
-                "unit":"PSI",
-                "offset":0,
-                "scalingFactor":595.0083,
-                "row":1,
-                "column":0
-            },
-            
-            {
-                "type":"Number",
-                "label":"LOXPT3",
+                "type":"Graph",
+                "label":"FUEL_ENGINE_PRES",
                 "pin":"AIN82",
-                "unit":"PSI",
-                "offset":0,
-                "scalingFactor":604.934,
-                "row":2,
-                "column":0
-            },
-                
-            {
-                "type":"Number",
-                "label":"FUELPT1",
-                "pin":"AIN79",
                 "unit":"PSI",
                 "offset":-4.037,
                 "scalingFactor":626.466,
+                "range": 50,
+                "interval": 0.1,
                 "row":0,
-                "column":1
+                "column":2,
+                "yRange":700
             },
-            
+
+            {
+                "type":"Graph",
+                "label":"LOX_ENGINE_PRES",
+                "pin":"AIN79",
+                "unit":"PSI",
+                "offset":-5,
+                "scalingFactor":604.934,
+                "range":50,
+                "interval": 0.1,
+                "row":0,
+                "column":3,
+                "yRange":700
+            },
+
             {
                 "type":"Number",
-                "label":"FUELPT2",
+                "label":"LOX_SUPPLY_PRES",
+                "pin":"AIN77",
+                "unit":"PSI",
+                "offset": 0,
+                "scalingFactor":605.086,
+                "row":4,
+                "column":0
+            },
+                
+            {
+                "type":"Number",
+                "label":"LOX_LINE_PRES",
+                "pin":"AIN78",
+                "unit":"PSI",
+                "offset":-2.2,
+                "scalingFactor":595.0083,
+                "row":5,
+                "column":0
+            },     
+                
+            {
+                "type":"Number",
+                "label":"FUEL_SUPPLY_PRES",
                 "pin":"AIN80",
                 "unit":"PSI",
                 "offset":-2.844,
-                "scalingFactor":623.638,
-                "row":1,
-                "column":1
+                "scalingFactor":623.637521,
+                "row":4,
+                "column":2
             },
-        
+            
             {
                 "type":"Number",
-                "label":"FUELPT3",
+                "label":"FUEL_LINE_PRES",
                 "pin":"AIN81",
                 "unit":"PSI",
                 "offset":-2.425,
-                "scalingFactor":620.212,
-                "row":2,
-                "column":1
-            }
-            
+                "scalingFactor":620.2115608,
+                "row":5,
+                "column":2
+            }         
         ]
 }
