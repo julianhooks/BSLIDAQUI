@@ -12,18 +12,24 @@ def main():
     try: 
         handle = ljm.openS("ANY","ANY","ANY")
     except ljm.LJMError:
-        logging.error("Could not connect to Labjack via Ethernet, restart program")
-        exit()
+        logging.error("Could not connect to Labjack.")
     
-    with open("styleConfig.json","r") as f:
+    with open("config.json","r") as f:
         fileObj = json.load(f)
         instrumentStyle = fileObj["instrumentStyle"]
         windowStyle = fileObj["windowStyle"]
         logConfig = fileObj["logSettings"]
-
-    with  open("windowConfig.json","r") as f:
-        fileObj = json.load(f)
-        instrumentConfigs = fileObj["instruments"]
+    
+    try:
+        with  open(logConfig["configFilePath"],"r") as f:
+            fileObj = json.load(f)
+            instrumentConfigs = fileObj["instruments"]
+    except OSError:
+        logging.error(f"Window config file {logConfig['configFilePath']} does not exist.")
+        exit()
+    except KeyError:
+        logging.error(f"config file does not include key \" configFilePath \".")
+        exit()
     
     #Add indexes for multiprocessing array and value arrays for graphs
 
@@ -52,8 +58,15 @@ def main():
         try:
             GetVoltages(voltages,instrumentConfigs,handle)
         except ljm.LJMError:
-            isWindowOpen = 0
-            pass
+            logging.error("An LJM library or hardware error occured")
+            isWindowOpen.value = 0
+            break
+        except UnboundLocalError:
+            logging.error("Labjack not connected")
+            isWindowOpen.value = 0
+            break
+        except:
+            break
 
     try:
         UIProcess.join(5)
@@ -67,6 +80,8 @@ def main():
         ljm.close(handle)
     except ljm.LJMError:
         logging.error("Closing labjack connection failed")
+    except UnboundLocalError:
+        pass #Case where there is no connection to disconnect
 
     exit()
 
@@ -75,8 +90,9 @@ def GetVoltages(voltageData: multiprocessing.Array, instrumentConfigData: dict, 
         try: 
             voltageData[i["index"]] = ljm.eReadName(labjackHandle, i["pin"])
         except ljm.LJMError:
-            logging.error("An LJM library or hardware error occured")
             raise ljm.LJMError
+        except UnboundLocalError:
+            raise UnboundLocalError
 
 if (__name__ == "__main__"):
     main()
