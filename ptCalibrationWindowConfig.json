@@ -1,0 +1,70 @@
+{
+    "instruments":
+    [
+        {
+            "type":"Number",
+            "label":"FUEL_SUPPLY_PRES",
+            "pin":"AIN80",
+            "unit":"V",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":0,
+            "column":1
+        },
+
+        {
+            "type":"Number",
+            "label":"FUEL_LINE_PRES",
+            "pin":"AIN81",
+            "unit":"PSI",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":1,
+            "column":1
+        },
+
+        {
+            "type":"Number",
+            "label":"FUEL_ENGINE_PRES",
+            "pin":"AIN82",
+            "unit":"PSI",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":2,
+            "column":1
+        },
+
+        {
+            "type":"Number",
+            "label":"LOX_SUPPLY_PRES",
+            "pin":"AIN77",
+            "unit":"PSI",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":0,
+            "column":0
+        },
+
+        {
+            "type":"Number",
+            "label":"LOX_LINE_PRES",
+            "pin":"AIN78",
+            "unit":"PSI",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":1,
+            "column":0
+        },
+
+        {
+            "type":"Number",
+            "label":"LOX_ENGINE_PRES",
+            "pin":"AIN79",
+            "unit":"V",
+            "offset": 0,
+            "scalingFactor": 0,
+            "row":2,
+            "column":0
+        }
+    ]
+}
