@@ -65,6 +65,8 @@ def main():
             logging.error("Labjack not connected")
             isWindowOpen.value = 0
             break
+        except:
+            break
 
     try:
         UIProcess.join(5)
