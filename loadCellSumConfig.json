@@ -1,0 +1,32 @@
+{
+    "instruments":
+    [
+        {
+            "type":"Graph",
+            "label":"LC2",
+            "pin":"AIN75",
+            "unit":"LBs",
+            "offset": 10,
+            "scalingFactor": 10,
+            "range": 50,
+            "interval": 0.1,
+            "row":0,
+            "column":1,
+            "yRange":20
+        },
+        
+        {
+            "type":"Graph",
+            "label":"LC1",
+            "pin":"AIN76",
+            "unit":"LBs",
+            "offset": 10,
+            "scalingFactor": 10,
+            "range": 50,
+            "interval": 0.1,
+            "row":0,
+            "column":0,
+            "yRange":20
+        }
+    ]
+}

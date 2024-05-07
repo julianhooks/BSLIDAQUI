@@ -1,1 +1,1 @@
-C:\Users\wolfi\OneDrive\Desktop\BSLIDAQUI\Scripts\python.exe C:\Users\wolfi\OneDrive\Desktop\BSLIDAQUI\main.py
+Scripts\activate.bat && py main.py  >> logs\process.log

@@ -23,6 +23,5 @@ def loadDataVars(masterFrame: tk.Frame, instrumentConfigDict: dict) -> None:
     for i in instrumentConfigDict:
         tk.StringVar(masterFrame, i["label"])
 
-def updateInstrument(masterFrame: tk.Frame, instrument: dict,  voltageData: multiprocessing.Array) -> None:
-    scaledData = voltageData[instrument["index"]]*instrument["scalingFactor"] + instrument["offset"]
-    masterFrame.setvar(name=instrument["label"],value=str(scaledData)[0:8])
+def updateInstrument(masterFrame: tk.Frame, instrument: dict,  measurementData: multiprocessing.Array) -> None:
+    masterFrame.setvar(name=instrument["label"],value=str(measurementData[instrument["index"]])[0:5])

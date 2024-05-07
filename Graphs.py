@@ -1,6 +1,5 @@
 import tkinter as tk
 import multiprocessing
-from copy import deepcopy, copy
 
 import numpy as np
 import matplotlib.figure
@@ -11,12 +10,11 @@ import Instrument
 
 ani = []
 
-def updateGraph(graph: dict, voltageData: multiprocessing.Array) -> None:
-    trash = graph["values"].pop()
-    graph["values"].appendleft(voltageData[graph["index"]] * graph["scalingFactor"] + graph["offset"])
-    #print(graph["values"])
+def updateGraph(graph: dict, meaurementData: multiprocessing.Array) -> None:
+    graph["values"].pop()
+    graph["values"].appendleft(meaurementData[graph["index"]])
 
-def loadGraph(parentFrame: tk.Frame, graph: dict, styleDict: dict) -> None:
+def loadGraph(parentFrame: tk.Frame, graph: dict, styleDict: dict, zeroIndex: multiprocessing.Value) -> None:
     #setting up the tk frame
     widgetFrame = tk.Frame(parentFrame)
     widgetFrame.grid(sticky=(tk.N,tk.S,tk.E,tk.W))
@@ -31,7 +29,7 @@ def loadGraph(parentFrame: tk.Frame, graph: dict, styleDict: dict) -> None:
     Instrument.loadInstrument(widgetFrame,graph,styleDict)
 
     #setting up the matplot plot
-    fig = matplotlib.figure.Figure(figsize=(3, 3), dpi=100)
+    fig = matplotlib.figure.Figure(figsize=(3, 3), dpi=0.9*styleDict["minHeight"])
     t = np.arange(0, graph["range"], graph["interval"]) #replace max with i.range / i.interval
     ax = fig.add_subplot()
     line, = ax.plot(t, graph["values"])
@@ -59,7 +57,8 @@ def loadGraph(parentFrame: tk.Frame, graph: dict, styleDict: dict) -> None:
     ani.append(matplotlib.animation.FuncAnimation(fig, animate, interval=20, blit=True, save_count=50))
 
     def zero() -> None:
-        graph["offset"] -= graph["values"][0]
+        zeroIndex.value = graph["index"]
+        print(f'zeroing {graph["index"]}')
 
     tk.Button(widgetFrame, text = "Zero", command = zero, 
               padx = styleDict["padding"], pady = styleDict["padding"],

@@ -1,24 +1,25 @@
 {
 "logSettings":
 {
-    "configFilePath": "ptCalibrationWindowConfig.json",
-    "sampleRateSec": 0.001,
-    "sampleRateHz": 1000
+    "configFilePath": "SP24FireConfig.json",
+    "defaultSampleRateSec": 0.01,
+    "defaultSampleRateHz": 100
 },
 
     "instrumentStyle":
 {
-    "minWidth":200,
-    "minHeight":100,
-    "padding":10,
-    "margin":40,
+    "minWidth":150,
+    "minHeight":75,
+    "padding":8,
+    "margin":32,
     "valueFont":"Arial",
     "labelFont":"Arial",
-    "valueSize":40,
-    "labelSize":20,
+    "valueSize":30,
+    "labelSize":15,
     "labelColor":"#000000",
     "valueColor":"#000000",
-    "backgroundColor":"#FFFFFF"
+    "backgroundColor":"#FFFFFF",
+    "activeColor": "#000000"
 },
 
     "windowStyle":

@@ -1,0 +1,427 @@
+{
+    "instruments":
+    [
+        {
+            "type":"Hidden",
+            "label":"LOXLC2",
+            "pin":"AIN76",
+            "unit":"V",
+
+            "row":0,
+            "column":0,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Hidden",
+            "label":"LOXLC1",
+            "pin":"AIN75",
+            "unit":"V",
+
+            "row":0,
+            "column":0,
+
+            "offset": 0,
+            "scalingFactor": 1,
+
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+        
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Graph",
+            "label":"LOX WEIGHT",
+            "pin":"AIN0",
+            "unit":"LBS",
+
+            "row":4,
+            "column":0,
+
+            "offset": -478.6775713,
+            "scalingFactor": 167.10985,
+
+            "smoothing":true,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            
+            "customScale":true,
+            "scaleCommand":["sum", 0,1],
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+
+        {
+            "type":"Hidden",
+            "label":"FLLC2",
+            "pin":"AIN99",
+            "unit":"V",
+
+            "row":0,
+            "column":1,
+
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+            
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Hidden",
+            "label":"FLLC1",
+            "pin":"AIN100",
+            "unit":"V",
+
+            "row":0,
+            "column":1,
+
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20        
+        },
+        {
+            "type":"Graph",
+            "label":"FUEL WEIGHT",
+            "pin":"AIN1",
+            "unit":"LBS",
+
+            "row":4,
+            "column":1,
+
+            "offset": -43.02748468,
+            "scalingFactor": 17.54570,
+
+            "smoothing":true,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":true,
+            "scaleCommand":["sum", 3,4],
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+
+        {
+            "type":"Hidden",
+            "label":"THRUST1",
+            "pin":"AIN72",
+            "unit":"V",
+
+            "row":4,
+            "column":2,
+
+            "offset": 0,
+            "scalingFactor": 1,
+
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            
+            "customScale":false,
+                        
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Hidden",
+            "label":"THRUST2",
+            "pin":"AIN73",
+            "unit":"V",
+
+            "row":0,
+            "column":2,
+
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+            
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Hidden",
+            "label":"THRUST3",
+            "pin":"AIN74",
+            "unit":"V",
+
+            "row":0,
+            "column":2,
+
+            "offset": 0,
+            "scalingFactor": 1,
+
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Graph",
+            "label":"THRUST",
+            "pin":"AIN2",
+            "unit":"LBS",
+
+            "row":4,
+            "column":2,
+
+            "offset": 37.73210048,
+            "scalingFactor": 99.10087,
+            
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":true,
+            "scaleCommand":["sum", 7,8,9],
+            
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+
+        {
+            "type":"Number",
+            "label":"LOX SUPPLY",
+            "pin":"AIN78",
+            "unit":"PSI",
+
+            "row":0,
+            "column":0,
+
+            "offset": -6.1538,
+            "scalingFactor": 587.0033,
+            "range": 50,
+            "interval": 0.1,
+
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"LOX LINE",
+            "pin":"AIN77",
+            "unit":"PSI",
+            "offset": -1.6434,
+            "scalingFactor": 579.8434,
+            "range": 50,
+            "interval": 0.1,
+            "row":1,
+            "column":0,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"LOX INLET",
+            "pin":"AIN79",
+            "unit":"PSI",
+            "offset": -3.0497,
+            "scalingFactor": 584.0234,
+            "range": 50,
+            "interval": 0.1,
+            "row":2,
+            "column":0,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"LOX MANIFOLD",
+            "pin":"AIN96",
+            "unit":"PSI",
+            "offset": -10.5941,
+            "scalingFactor": 342.5164,
+            "range": 50,
+            "interval": 0.1,
+            "row":3,
+            "column":0,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+
+        {
+            "type":"Number",
+            "label":"FUEL SUPPLY",
+            "pin":"AIN81",
+            "unit":"PSI",
+            "offset": -5.0197,
+            "scalingFactor": 576.4878,
+            "range": 50,
+            "interval": 0.1,
+            "row":0,
+            "column":1,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"FUEL LINE",
+            "pin":"AIN80",
+            "unit":"PSI",
+            "offset": -2.4072,
+            "scalingFactor": 582.6989,
+            "range": 50,
+            "interval": 0.1,
+            "row":1,
+            "column":1,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"FUEL INLET",
+            "pin":"AIN82",
+            "unit":"PSI",
+            "offset": -1.8303,
+            "scalingFactor": 582.8831,
+            "range": 50,
+            "interval": 0.1,
+            "row":2,
+            "column":1,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+        {
+            "type":"Number",
+            "label":"FUEL MANIFOLD",
+            "pin":"AIN98",
+            "unit":"PSI",
+            "offset": -2.2705,
+            "scalingFactor": 454.0983,
+            "range": 50,
+            "interval": 0.1,
+            "row":3,
+            "column":1,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+
+        {
+            "type":"Number",
+            "label":"ENGINE T",
+            "pin":"AIN84",
+            "unit":"C",
+            "offset": 0,
+            "scalingFactor": 1,
+            "range": 50,
+            "interval": 0.1,
+            "row":1,
+            "column":2,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        },
+
+        {
+            "type":"Number",
+            "label":"CHAMBER P",
+            "pin":"AIN97",
+            "unit":"PSI",
+            "offset": -3.2155,
+            "scalingFactor": 421.2237,
+            "range": 50,
+            "interval": 0.1,
+            "row":0,
+            "column":2,
+            "yRange":20,
+            "smoothing":false,
+            "windowLength": 50,
+            "filtering":false,
+            "differential":false,
+            "customScale":false
+        }
+    ]
+}

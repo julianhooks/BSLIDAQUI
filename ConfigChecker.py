@@ -1,0 +1,1 @@
+#Check new configs for all required values
