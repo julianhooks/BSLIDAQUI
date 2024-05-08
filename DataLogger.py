@@ -6,10 +6,10 @@ import multiprocessing
 def LogLoop(instrumentConfigData:dict, measurements: multiprocessing.Array, isOpen: multiprocessing.Value, 
             isLogging: multiprocessing.Value, logIntervalInSecs: multiprocessing.Value) -> None:
     try:
-        filehandle = open("Logs/"+str(datetime.datetime.today().strftime("%H:%M_%d_%m_%y"))+"data.log","x")
+        filehandle = open("Logs/"+str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))+"data.log","x")
     except FileExistsError:
         logging.warning(
-            f'Data log file {str(datetime.datetime.today().strftime("%H:%M_%d_%m_%y"))}data.log already exists. \nAppending...')
+            f'Data log file {str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))}data.log already exists. \nAppending...')
         filehandle = open("Logs/"+str(datetime.datetime.today().strftime("%H:%M_%d_%m_%y"))+"data.log","+")
     except OSError:
         logging.error("Data log file could not be opened")

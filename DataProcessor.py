@@ -19,13 +19,9 @@ def loadInstruments(instrumentConfigs: dict):
 
 def updateInstrument(instrument: dict,  voltageData: multiprocessing.Array, measurementData: multiprocessing.Array,zeroIndex: multiprocessing.Value) -> None:
     if(zeroIndex.value == instrument["index"]):
-        print(f'{instrument["offset"]}')
-        print(f'{measurementData[instrument["index"]]}')
         instrument["offset"] -= measurementData[instrument["index"]]
-        print(f'{instrument["offset"]}')
         instrument["workingArray"] = [0]*instrument["windowLength"]
         zeroIndex.value = -1
-        print(f'Zeroed {instrument["index"]}')
     
     if(instrument["customScale"] == True):
         scaledData = customScale(instrument["scaleCommand"],measurementData)*instrument["scalingFactor"] + instrument["offset"]
