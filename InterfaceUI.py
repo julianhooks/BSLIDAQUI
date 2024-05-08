@@ -25,7 +25,7 @@ def loadWidgets(mainFrame: tk.Frame, instrumentConfigDict: dict, styleDict: dict
     #Logging header
 
     tk.Label(mainFrame,textvariable=logHeaderText, font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
-              background = styleDict["backgroundColor"]).grid(row=0,column=4)
+              background = styleDict["backgroundColor"]).grid(row=0,column=5)
 
     # LOAD LOGGING BUTTONS
 
@@ -39,17 +39,17 @@ def loadWidgets(mainFrame: tk.Frame, instrumentConfigDict: dict, styleDict: dict
 
     startButton = tk.Button(mainFrame, text="Start Data Logging", command = startLog, 
               font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
-              background = styleDict["backgroundColor"]).grid(row=1,column=4)
+              background = styleDict["backgroundColor"]).grid(row=1,column=5)
     
     stopButton = tk.Button(mainFrame, text="End Data Logging", command = stopLog, 
               font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
-              background = styleDict["backgroundColor"]).grid(row=2,column=4)
+              background = styleDict["backgroundColor"]).grid(row=2,column=5)
     
     # Log freq
 
     tk.Entry(mainFrame, textvariable=logFreqText,
              font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
-              background = styleDict["backgroundColor"]).grid(row=3,column=4)
+              background = styleDict["backgroundColor"]).grid(row=3,column=5)
     
     #Set frequency Button
 
@@ -63,7 +63,7 @@ def loadWidgets(mainFrame: tk.Frame, instrumentConfigDict: dict, styleDict: dict
 
     setLogButton = tk.Button(mainFrame, text="Set Log Frequency", command = updateFrequency, 
               font = (styleDict["labelFont"],styleDict["labelSize"],"normal"), 
-              background = styleDict["backgroundColor"]).grid(row=4,column=4)
+              background = styleDict["backgroundColor"]).grid(row=4,column=5)
 
 
 def updateWidgets(masterFrame: tk.Frame, instrumentConfigDict: dict, measurementData: multiprocessing.Array) -> None:
@@ -80,6 +80,7 @@ def UILoop(measurementData: multiprocessing.Array, instrumentConfigData: dict,
            zeroIndex: multiprocessing.Value) -> None:
     
     root = tk.Tk()
+    root.title("Test Stand Data Streamer")
 
     def onClosing():
         isWindowOpenGlobal.value = 0

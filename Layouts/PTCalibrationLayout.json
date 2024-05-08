@@ -1,0 +1,97 @@
+{
+    "instruments":
+    [
+        {
+            "type":"Number",
+            "label":"LOX MANIFOLD",
+            "pin":"AIN95",
+            "unit":"V",
+
+            "row":0,
+            "column":3,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":true,
+            "windowLength": 500,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Number",
+            "label":"LOX MANIFOLD",
+            "pin":"AIN96",
+            "unit":"V",
+
+            "row":0,
+            "column":0,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":true,
+            "windowLength": 500,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Number",
+            "label":"CHAMBER",
+            "pin":"AIN97",
+            "unit":"V",
+
+            "row":1,
+            "column":0,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":true,
+            "windowLength": 500,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Number",
+            "label":"FUEL MANIFOLD",
+            "pin":"AIN98",
+            "unit":"V",
+
+            "row":2,
+            "column":0,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":true,
+            "windowLength": 500,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        }
+    ]
+}

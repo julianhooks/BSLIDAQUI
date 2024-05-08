@@ -52,6 +52,8 @@ def updateInstrument(instrument: dict,  voltageData: multiprocessing.Array, meas
 
 def customScale(command: list, measurements: multiprocessing.Array) -> float:
     output = 0
+    if(command[0] == "calibrate"):
+        output = measurements[command[1]]
     if(command[0] == "sum"):
         for i in range(int(len(command)-1)):
             output += measurements[command[i+1]]
