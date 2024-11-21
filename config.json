@@ -1,7 +1,7 @@
 {
 "logSettings":
 {
-    "configFilePath": "Layouts/SP24FireLayout.json",
+    "configFilePath": "Layouts/AU24FireLayout.json",
     "defaultSampleRateSec": 0.01,
     "defaultSampleRateHz": 100
 },

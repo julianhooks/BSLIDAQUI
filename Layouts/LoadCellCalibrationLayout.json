@@ -1,57 +1,72 @@
 {
     "instruments":
     [
+        {"type": "Hidden","label": "AIN72 THRUST 1","pin": "AIN72","unit": "V","row": 0,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN73 THRUST 2","pin": "AIN73","unit": "V","row": 0,"column": 1,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN74 THRUST 3","pin": "AIN74","unit": "V","row": 0,"column": 2,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN75 LOXLC1","pin": "AIN75","unit": "V","row": 0,"column": 3,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN76 LOXLC2","pin": "AIN76","unit": "V","row": 0,"column": 4,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN77 LOXPT1","pin": "AIN77","unit": "V","row": 1,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN78 LOXPT2","pin": "AIN78","unit": "V","row": 1,"column": 1,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN79 LOXPT3","pin": "AIN79","unit": "V","row": 1,"column": 2,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN80 FLPT1","pin": "AIN80","unit": "V","row": 1,"column": 3,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN81 FLPT2","pin": "AIN81","unit": "V","row": 1,"column": 4,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN82 FLPT3","pin": "AIN82","unit": "V","row": 2,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN83 TC1","pin": "AIN83","unit": "V","row": 2,"column": 1,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN84 TC2","pin": "AIN84","unit": "V","row": 2,"column": 2,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN96 LOX PT4","pin": "AIN96","unit": "V","row": 2,"column": 3,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN97 CHAMBERPT","pin": "AIN97","unit": "V","row": 2,"column": 4,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN98 FLPT4","pin": "AIN98","unit": "V","row": 3,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN99 FLLC2","pin": "AIN99","unit": "V","row": 3,"column": 1,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN100 FLLC1","pin": "AIN100","unit": "V","row": 3,"column": 2,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+
         {
-            "type":"Number",
-            "label":"AIN75 - LOX 1",
-            "pin":"AIN75",
+            "type":"Graph",
+            "label":"FUEL WEIGHT V",
+            "pin":"AIN0",
             "unit":"V",
+
+            "row":0,
+            "column":0,
+
             "offset": 0,
             "scalingFactor": 1,
+
+            "smoothing":false,
+            "windowLength": 1000,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":true,
+            "scaleCommand":["sum", 16,17],
+
             "range": 50,
             "interval": 0.1,
+            "yRange":25
+        },
+        {
+            "type":"Graph",
+            "label":"LOX WEIGHT V",
+            "pin":"AIN1",
+            "unit":"V",
+
             "row":0,
             "column":1,
-            "yRange":20
-        },
-        {
-            "type":"Number",
-            "label":"AIN76 - LOX 2",
-            "pin":"AIN76",
-            "unit":"V",
+
             "offset": 0,
             "scalingFactor": 1,
+
+            "smoothing":false,
+            "windowLength": 1000,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":true,
+            "scaleCommand":["sum", 3,4],
+
             "range": 50,
             "interval": 0.1,
-            "row":0,
-            "column":2,
-            "yRange":20
-        },
-        {
-            "type":"Number",
-            "label":"AIN99 - FUEL 1",
-            "pin":"AIN99",
-            "unit":"V",
-            "offset": 0,
-            "scalingFactor": 1,
-            "range": 50,
-            "interval": 0.1,
-            "row":1,
-            "column":1,
-            "yRange":20
-        },
-        {
-            "type":"Number",
-            "label":"AIN100 - FUEL 2",
-            "pin":"AIN100",
-            "unit":"V",
-            "offset": 0,
-            "scalingFactor": 1,
-            "range": 50,
-            "interval": 0.1,
-            "row":1,
-            "column":2,
-            "yRange":20
+            "yRange":25
         }
     ]
 }

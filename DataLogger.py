@@ -6,11 +6,11 @@ import multiprocessing
 def LogLoop(instrumentConfigData:dict, measurements: multiprocessing.Array, isOpen: multiprocessing.Value, 
             isLogging: multiprocessing.Value, logIntervalInSecs: multiprocessing.Value) -> None:
     try:
-        filehandle = open("Logs/"+str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))+"data.log","x")
+        filehandle = open(f'Logs/{str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))}data.csv',"x")
     except FileExistsError:
         logging.warning(
-            f'Data log file {str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))}data.log already exists. \nAppending...')
-        filehandle = open("Logs/"+str(datetime.datetime.today().strftime("%H:%M_%d_%m_%y"))+"data.log","+")
+            f'Data log file {str(datetime.datetime.today().strftime("%H%M___%d_%m_%y"))}data.csv already exists. \nAppending...')
+        filehandle = open(f'Logs/{str(datetime.datetime.today().strftime("%H:%M_%d_%m_%y"))}data.csv',"a")
     except OSError:
         logging.error("Data log file could not be opened")
         try:
@@ -19,11 +19,11 @@ def LogLoop(instrumentConfigData:dict, measurements: multiprocessing.Array, isOp
             logging.exception('Exception occurred: ')
             raise
     
-    #Make sure to include a filehandle.close() in all non-standard exits form this point forward
+    #Include a filehandle.close() in all non-standard exits form this point forward
     
     writer = csv.writer(filehandle)
 
-    #set up units for csv table
+    #Set up name, units, and timestamp row for csv table
     timeRow = [datetime.datetime.today().time()]
     headerRow = ["Time"]
     unitRow = ["Seconds"]
@@ -55,6 +55,5 @@ def LogLoop(instrumentConfigData:dict, measurements: multiprocessing.Array, isOp
 def logValues(csvHandle: csv.writer, measurements: multiprocessing.Array, instrumentConfigData: dict, startTime: float):
     row = [datetime.datetime.today().timestamp()-startTime]
     for i in instrumentConfigData:
-        #row.append(voltageData[i["index"]])
         row.append(measurements[i["index"]])
     csvHandle.writerow(row)

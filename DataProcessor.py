@@ -56,4 +56,9 @@ def customScale(command: list, measurements: multiprocessing.Array) -> float:
     if(command[0] == "calibrate&sum"):
         for i in range(int(len(command)-1)):
             output += measurements[command[i+1][0]]*command[i+1][1] + command[i+1][2]
+    if(command[0] == "polyfit4"):
+        output = (measurements[command[1]]*measurements[command[1]]*measurements[command[1]]*measurements[command[1]])*command[2][0]
+        +(measurements[command[1]]*measurements[command[1]]*measurements[command[1]])*command[2][1]
+        +(measurements[command[1]]*measurements[command[1]])*command[2][2]
+        +(measurements[command[1]])*command[2][3]
     return output
