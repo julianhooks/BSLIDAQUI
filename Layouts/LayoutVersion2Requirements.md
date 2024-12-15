@@ -2,6 +2,9 @@
 - Required
 
 ### Instruments
+"label": string
+- Label of instrument
+- Required
 
 "index":int>=0
 - Is not pulled directly by the UI software, just  
@@ -55,8 +58,6 @@ Only necessary if customScale true
 
 
 #### Number and Graph only commands
-"label": string
-- Label of instrument
 "unit": string
 - Unit for instrument
 "row": int >= 0 
