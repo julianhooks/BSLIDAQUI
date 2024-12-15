@@ -6,11 +6,11 @@ import sys
 
 logging.basicConfig(level=logging.DEBUG)
 
-def main(argv: list[str]) -> None:
+def main(filepath) -> None:
     logging.info(f'LayoutChecker started at {datetime.datetime.today()}')
 
     # Check new configs for all required values, diagnose errors, apply formatting
-    layoutFilePath = argv[1]
+    layoutFilePath = filepath
     # Load desired config
     try:
         with open(layoutFilePath,"r") as f:
@@ -37,6 +37,7 @@ def version2Checks(layout:dict) -> None:
         elif (instrument['type'] not in validTypes):
             logging.info(f"{instrument['label']}: type {instrument['type']} is not a valid type")
         else:
+            # For version two, number encompasses all of the functions present in hidden and graph encompasses all of the functions in number, so we call all the checks each time
             if (instrument['type'] == "Hidden"):
                 hiddenCheckv2(instrument)
             if (instrument['type'] == "Number"):
@@ -49,6 +50,7 @@ def version2Checks(layout:dict) -> None:
             
 def hiddenCheckv2(instrument:dict) -> None:
     # Check that the instrument contains all necessary keys and keys are of proper types
+    # Running prompts with multiple types means that every entry needs an iterable type, so single lists of types are needed 
     requiredKeys = [("pin",[str]),
                     ("label",[str]),
                     ("windowLength",[int]),
@@ -77,6 +79,7 @@ def hiddenCheckv2(instrument:dict) -> None:
     if (fatalKeyError == True):
         return
 
+    # Check that filter window length is positive and non-zero (sanity check)
     if (instrument['windowLength'] < 1):
         logging.info(f"{instrument['label']}: window length {instrument['windowLength']} is invalid")
 
@@ -87,7 +90,7 @@ def hiddenCheckv2(instrument:dict) -> None:
         elif (len(instrument['filterCoefficients']) != instrument['windowLength']+1):
             logging.info(f"{instrument['label']}: window length: {instrument['windowLength']} does not agree with number of filter coefficients {len(instrument['filterCoefficients'])}")
     
-    # Check custOm scale commands
+    # Check custom scale commands
     validCustomCommands = ["sum","calibrate","polyfit4"]
     if (instrument['customScale'] == True):
         # Check for invalid scale commands
@@ -128,7 +131,6 @@ def hiddenCheckv2(instrument:dict) -> None:
 
     return
 
-
 def numberCheckv2(instrument:dict) -> None:
     # Check that the instrument contains all necessary keys and keys are of proper types
     requiredKeys = [("unit",str),
@@ -147,6 +149,7 @@ def numberCheckv2(instrument:dict) -> None:
     if (fatalKeyError == True):
         return
 
+    # Check rows and columns make sense
     if (instrument['row'] < 0):
         logging.info(f"{instrument['label']}: invalid row {instrument['row']}")
     if (instrument['column'] < 0):
@@ -155,7 +158,7 @@ def numberCheckv2(instrument:dict) -> None:
     return
 
 def graphCheckv2(instrument:dict) -> None:
-        # Check that the instrument contains all necessary keys and keys are of proper types
+    # Check that the instrument contains all necessary keys and keys are of proper types
     requiredKeys = [("range",int),
                     ("interval",float),
                     ("yRange",int)] 
@@ -175,4 +178,4 @@ def graphCheckv2(instrument:dict) -> None:
     return
 
 if (__name__ == "__main__"):
-    main(sys.argv)
+    main(sys.argv[1])
