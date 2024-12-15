@@ -133,6 +133,15 @@ def GetVoltages(voltageData: multiprocessing.Array, instrumentConfigData: dict, 
     for i in instrumentConfigData:
         try: 
             voltageData[i["index"]] = ljm.eReadName(labjackHandle, i["pin"])
+        except KeyError:
+            logging.debug(f"{i["label"]} has no assigned pin.")
+            pass
+        except ljm.LJME_INVALID_NAME:
+            logging.debug(f"{i["label"]} has no assigned pin.")
+            if (i["pin"] == None):
+                pass
+            else:
+                raise ljm.LJMError     
         except ljm.LJMError:
             raise ljm.LJMError
         except UnboundLocalError:
