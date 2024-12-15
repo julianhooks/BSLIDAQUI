@@ -1,5 +1,6 @@
 {
-        "instruments":
+    "version":1,    
+    "instruments":
         [
             {
                 "type":"Graph",
