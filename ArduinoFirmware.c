@@ -10,6 +10,9 @@ void setup() {
       int pinNum = msg.substring(2,5).toInt();
       Serial.println(analogRead(pinNum));
     }
+    else if (msg == "whatislove") {
+      Serial.println("babydonthurtme");
+    }
     else if (msg != "") {
       Serial.print("Heard "+msg+".\n");
     }
