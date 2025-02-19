@@ -12,21 +12,20 @@ def main():
     while(True):
         print("Testing...")
         print(handle.write(b'RD000\n'))
-        print(handle.readline())
-        time.sleep(0.5)
+        print(handle.readline()[:-2])
+        time.sleep(1)
         
-
 #Get voltages from labjack
 def GetVoltagesUSB(voltageData: multiprocessing.Array, instrumentConfigData: dict, serialHandle: serial.Serial):
     for i in instrumentConfigData:
-        #Read voltage
+        # Skip for non-voltage inputs
+        if (i["pin"] == None):
+            continue
+        # Read voltage
         # Make read request
-        serialHandle.write()
-        # Wait
-        # Read value
-        voltageData[i["index"]] = 5.0*(int(serialHandle.read(size = 2))/65536)
-        #Error check
-        #Set value
+        serialHandle.write(b'RD' + i["pin"] + b'\n')
+        # Calibrate
+        voltageData[i["index"]] = 5.0*(int(serialHandle.readline()[:-2])/1024)
 
 
 def GetVoltagesLabjack(voltageData: multiprocessing.Array, instrumentConfigData: dict, labjackHandle: int) -> None:
@@ -47,7 +46,7 @@ def GetVoltagesLabjack(voltageData: multiprocessing.Array, instrumentConfigData:
         except UnboundLocalError:
             raise UnboundLocalError
         
-def LoadLabJack() -> None:
+def LoadLabJack() -> int:
     #Attempt to connect to labjack
     try: 
         handle = ljm.openS("ANY","ANY","ANY")
@@ -58,22 +57,33 @@ def LoadLabJack() -> None:
 def LoadSerial() -> serial.Serial:
     handle = serial.Serial()
     handle.baudrate = 115200
+    handle.timeout = 1
     ports = [comport.device for comport in serial.tools.list_ports.comports()]
     for port in ports:
         handle.port = port
         try:
             handle.open()
         except serial.serialutil.SerialException:
-            print(port + "is open")
-            continue
+            pass
         if (not handle.is_open):
             continue
-        # Test connection?
+        
+        # Test connection
         # if good, return handle
         # else, move onto next port
+        time.sleep(1)
+        handle.write(b'whatislove\n')
+        response = handle.read(64)
+        if (response.find(b'babydonthurtme') == -1):
+            logging.info(f"Connection to port {port} failed.")
+            continue
+        else:
+            logging.info(f"Successfully established connection on port {port}.")
+            return handle
+        
     if (not handle.is_open):
         raise serial.SerialException
-    return handle
+    return None
         
 if (__name__=="__main__"):
     main()
