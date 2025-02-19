@@ -11,18 +11,18 @@ import DataProcessor
 def main():
     logging.info(f'UI started at {datetime.datetime.today()}')
 
-    #Attempt to connect to labjack
-    try: 
-        handle = ljm.openS("ANY","ANY","ANY")
-    except ljm.LJMError:
-        logging.critical("Could not connect to Labjack.")
-    
     #Open config file and load necessary information
     with open("config.json","r") as f:
         fileObj = json.load(f)
         instrumentStyle = fileObj["instrumentStyle"]
         windowStyle = fileObj["windowStyle"]
         logConfig = fileObj["logSettings"]
+    
+    #Attempt to connect to labjack
+    try: 
+        handle = ljm.openS("ANY","ANY","ANY")
+    except ljm.LJMError:
+        logging.critical("Could not connect to Labjack.")
     
     #Open layout file
     try:
