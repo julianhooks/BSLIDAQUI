@@ -1,0 +1,30 @@
+{
+    "version":1,
+    "instruments":
+    [
+        {"type": "Hidden","label": "AIN0","pin": "0", "unit": "V","row": 0,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {
+            "type":"Number",
+            "label":"AIN0",
+            "pin":"AIN0",
+            "unit":"V",
+
+            "row":0,
+            "column":0,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 1,
+            "filtering":false,
+            "differential":false,
+
+            "customScale":false,
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        }
+    ]
+}
