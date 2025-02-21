@@ -3,10 +3,11 @@
     "instruments":
     [
         {"type": "Hidden","label": "AIN0","pin": "0", "unit": "V","row": 0,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
+        {"type": "Hidden","label": "AIN0","pin": "1", "unit": "V","row": 0,"column": 0,"offset": 0,"scalingFactor": 1,"smoothing": false,"windowLength": 1,"filtering": false,"differential": false,"customScale": false,"range": 50,"interval": 0.1,"yRange": 20},
         {
             "type":"Number",
             "label":"AIN0",
-            "pin":"",
+            "pin":"-1",
             "unit":"V",
 
             "row":0,
@@ -19,8 +20,33 @@
             "windowLength": 1,
             "filtering":false,
             "differential":false,
+            "customScale":true,
 
-            "customScale":false,
+            "scaleCommand":["calibrate", 0],
+
+            "range": 50,
+            "interval": 0.1,
+            "yRange":20
+        },
+        {
+            "type":"Number",
+            "label":"AIN1",
+            "pin":"-1",
+            "unit":"V",
+
+            "row":0,
+            "column":1,
+            
+            "offset": 0,
+            "scalingFactor": 1,
+            
+            "smoothing":false,
+            "windowLength": 1,
+            "filtering":false,
+            "differential":false,
+            "customScale":true,
+
+            "scaleCommand":["calibrate", 1],
 
             "range": 50,
             "interval": 0.1,
