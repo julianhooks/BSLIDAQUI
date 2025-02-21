@@ -3,7 +3,8 @@
 {
     "configFilePath": "Layouts/AU24FireLayout.json",
     "defaultSampleRateSec": 0.01,
-    "defaultSampleRateHz": 100
+    "defaultSampleRateHz": 100,
+    "communicationMethod": "LabJack"
 },
 
     "instrumentStyle":
