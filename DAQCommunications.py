@@ -58,6 +58,8 @@ def getVoltagesUSB(voltageData: multiprocessing.Array, instrumentConfigData: dic
     #serialHandle.timeout = 0.001
     for i in instrumentConfigData:
         # Skip for non-voltage inputs
+        if (i["pin"] == "-1"):
+            continue
         # Read voltage
         # Make read request
         serialHandle.write(bytes("RD"+i["pin"]+"\n",encoding="utf8"))
