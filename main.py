@@ -7,6 +7,7 @@ from labjack import ljm
 import DataLogger
 import InterfaceUI
 import DataProcessor
+import DAQCommunications
 
 def main():
     logging.info(f'UI started at {datetime.datetime.today()}')
@@ -18,12 +19,17 @@ def main():
         windowStyle = fileObj["windowStyle"]
         logConfig = fileObj["logSettings"]
     
-    #Attempt to connect to labjack
-    try: 
-        handle = ljm.openS("ANY","ANY","ANY")
-    except ljm.LJMError:
-        logging.critical("Could not connect to Labjack.")
-    
+    if (logConfig["communicationMethod"] == "LabJack"):
+        getVoltages = DAQCommunications.getVoltagesLabjack
+        closeConnection = DAQCommunications.closeLabJack
+        handle = DAQCommunications.LoadLabJack()
+    elif (logConfig["communicationMethod"] == "Arduino"):
+        getVoltages = DAQCommunications.getVoltagesUSB
+        closeConnection = DAQCommunications.closeSerial
+        handle = DAQCommunications.loadSerial()
+    else:
+        logging.error(f"{logConfig['communicationMethod']} is not a valid method of communication.")
+
     #Open layout file
     try:
         with  open(logConfig["configFilePath"],"r") as f:
@@ -84,7 +90,7 @@ def main():
     while (isWindowOpen.value):
         #Try to read voltages from LabJack
         try:
-            GetVoltages(voltages,instrumentConfigs,handle)
+            getVoltages(voltages,instrumentConfigs,handle)
         #If LabJack is disconnected, exit program
         except ljm.LJMError:
             logging.critical("An LJM library or hardware error occured")
@@ -117,35 +123,9 @@ def main():
         logging.error("Joining calibrating process failed")
         dataProcess.terminate()
 
-    #Clean up labjack connection
-    try:
-        ljm.close(handle)
-    except ljm.LJMError:
-        logging.error("Closing labjack connection failed")
-    except UnboundLocalError:
-        logging.error("Labjack not connected at program termination")
-        pass #Case where there is no connection to disconnect
+    closeConnection(handle)
 
     exit()
-
-#Get voltages from labjack
-def GetVoltages(voltageData: multiprocessing.Array, instrumentConfigData: dict, labjackHandle: int) -> None:
-    for i in instrumentConfigData:
-        try: 
-            voltageData[i["index"]] = ljm.eReadName(labjackHandle, i["pin"])
-        except KeyError:
-            logging.debug(f"{i["label"]} has no assigned pin.")
-            pass
-        except ljm.LJME_INVALID_NAME:
-            logging.debug(f"{i["label"]} has no assigned pin.")
-            if (i["pin"] == None):
-                pass
-            else:
-                raise ljm.LJMError     
-        except ljm.LJMError:
-            raise ljm.LJMError
-        except UnboundLocalError:
-            raise UnboundLocalError
 
 if (__name__ == "__main__"):
     main()
