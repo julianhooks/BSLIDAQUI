@@ -6,7 +6,7 @@
         {
             "type":"Number",
             "label":"AIN0",
-            "pin":"AIN0",
+            "pin":"",
             "unit":"V",
 
             "row":0,
