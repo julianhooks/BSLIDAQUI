@@ -1,10 +1,10 @@
 {
 "logSettings":
 {
-    "configFilePath": "Layouts/AU24FireLayout.json",
+    "configFilePath": "Layouts/SpaceportTestLayout.json",
     "defaultSampleRateSec": 0.01,
     "defaultSampleRateHz": 100,
-    "communicationMethod": "LabJack"
+    "communicationMethod": "Arduino"
 },
 
     "instrumentStyle":

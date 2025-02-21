@@ -54,15 +54,22 @@ def closeLabJack(handle:int) -> None:
         pass #Case where there is no connection to disconnect
 
 def getVoltagesUSB(voltageData: multiprocessing.Array, instrumentConfigData: dict, serialHandle: serial.Serial):
+    #serialHandle.write_timeout = 0.001
+    #serialHandle.timeout = 0.001
     for i in instrumentConfigData:
-        # Skip for  -voltage inputs
-        if (i["pin"] == None):
-            continue
+        # Skip for non-voltage inputs
         # Read voltage
         # Make read request
-        serialHandle.write(b'RD' + i["pin"] + b'\n')
+        serialHandle.write(bytes("RD"+i["pin"]+"\n",encoding="utf8"))
         # Calibrate
-        voltageData[i["index"]] = ((5.0*int(serialHandle.readline()[:-2]))/1024)
+        try:
+            response = serialHandle.readline()
+            if (response == b''):
+                continue
+            voltageData[i["index"]] = ((5.0*int(response[:-2]))/1024)
+        except ValueError:
+            logging.info(f"Bad read: {response}")
+            pass
 
 def loadSerial() -> serial.Serial:
     handle = serial.Serial()

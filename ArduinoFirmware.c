@@ -13,6 +13,9 @@ void setup() {
     else if (msg == "whatislove") {
       Serial.println("babydonthurtme");
     }
+    else if (msg.startsWith("\xF0")) {
+      /* Do nothing. */
+    }
     else if (msg != "") {
       Serial.print("Heard "+msg+".\n");
     }

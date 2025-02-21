@@ -9,6 +9,8 @@ import InterfaceUI
 import DataProcessor
 import DAQCommunications
 
+logging.basicConfig(level=logging.DEBUG)
+
 def main():
     logging.info(f'UI started at {datetime.datetime.today()}')
 
@@ -20,10 +22,12 @@ def main():
         logConfig = fileObj["logSettings"]
     
     if (logConfig["communicationMethod"] == "LabJack"):
+        logging.info("Labjack DAQ confirmed.")
         getVoltages = DAQCommunications.getVoltagesLabjack
         closeConnection = DAQCommunications.closeLabJack
         handle = DAQCommunications.LoadLabJack()
     elif (logConfig["communicationMethod"] == "Arduino"):
+        logging.info("Arduino DAQ preferred.")
         getVoltages = DAQCommunications.getVoltagesUSB
         closeConnection = DAQCommunications.closeSerial
         handle = DAQCommunications.loadSerial()
